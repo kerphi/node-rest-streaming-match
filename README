@@ -1,0 +1,29 @@
+
+L'objectif est d'être capable de faire du streaming sur les données passées dans le body de la requête HTTP.
+
+Le test qui doit être réalisé est le suivant :
+  - on fait une requete GET sur la route / avec les données "123456789" dans le body de la requete
+  - le serveur récupère les données au compte goute caractères par caractères
+  - le serveur ajoute un espace après chaque caractère récupéré
+  - TODO : cela a t-il du sens de rajouter une pause avant d'envoyer le résultat à la réponse HTTP ?
+  - le serveur "pipe" le résultat sur la réponse HTTP de la requete
+  - le client récupère les données au compte goute également
+
+Voici un exemple de requête :
+
+curl --no-buffer --proxy "" -X GET http://127.0.0.1:3000/ -d "123456789"
+
+Qui doit retourer ceci :
+"1 2 3 4 5 6 7 8 9 "
+
+
+
+== Framework express :
+
+Pour lancer le serveur :
+cd express/
+npm install -d
+node app.js
+
+Fichier modifié :
+express/routes/index.js
