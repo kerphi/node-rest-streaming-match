@@ -27,3 +27,9 @@ node app.js
 
 Fichier modifié :
 express/routes/index.js
+
+
+
+== Remarque
+
+le module npm bufferstream est utilisé pour faire le "tampon" entre les streams "req" et "res" (npm install bufferstream)
