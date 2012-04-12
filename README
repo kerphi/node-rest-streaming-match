@@ -2,20 +2,19 @@
 L'objectif est d'être capable de faire du streaming sur les données passées dans le body de la requête HTTP.
 
 Le test qui doit être réalisé est le suivant :
-  - on fait une requete GET sur la route / avec les données "123456789" dans le body de la requete
-  - le serveur récupère les données au compte goute caractères par caractères
-  - le serveur ajoute un espace après chaque caractère récupéré
-  - TODO : cela a t-il du sens de rajouter une pause avant d'envoyer le résultat à la réponse HTTP ?
-  - le serveur "pipe" le résultat sur la réponse HTTP de la requete
-  - le client récupère les données au compte goute également
+  - on fait une requete GET sur la route / avec des données aléatoires dans le body de la requete
+  - le serveur récupère les données en streaming chunk par chunk
+  - le serveur écrit dans le stream de réponse qu'il a recu un chunk et note également sa taille
+  - le serveur fait une pause d'une seconde après chaque chunk reçu
+  - le client récupère le stream de réponse
 
 Voici un exemple de requête :
-
-curl --no-buffer --proxy "" -X GET http://127.0.0.1:3000/ -d "123456789"
+curl --no-buffer --proxy "" -X GET http://127.0.0.1:3000/ --data-binary @./data.txt
 
 Qui doit retourer ceci :
-"1 2 3 4 5 6 7 8 9 "
-
+chunk received l=16384
+chunk received l=65536
+chunk received l=63680
 
 
 == Framework express :
@@ -28,8 +27,3 @@ node app.js
 Fichier modifié :
 express/routes/index.js
 
-
-
-== Remarque
-
-le module npm bufferstream est utilisé pour faire le "tampon" entre les streams "req" et "res" (npm install bufferstream)

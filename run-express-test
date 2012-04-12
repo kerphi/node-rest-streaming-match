@@ -1,0 +1,10 @@
+#!/bin/bash
+
+node express/app.js &
+
+sleep 1
+./generate-lot-of-data
+curl --no-buffer --proxy "" -X GET http://127.0.0.1:3000/ --data-binary @./data.txt
+sleep 1
+
+killall node
