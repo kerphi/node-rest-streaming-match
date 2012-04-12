@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd express/
+npm install -d
+cd ..
+
 node express/app.js &
 
 sleep 1

@@ -8,7 +8,7 @@ Le test qui doit être réalisé est le suivant :
   - le serveur fait une pause d'une seconde après chaque chunk reçu
   - le client récupère le stream de réponse
 
-Voici un exemple de requête :
+Voici un exemple de requête permettant d'envoyer des données en streaming :
 curl --no-buffer --proxy "" -X GET http://127.0.0.1:3000/ --data-binary @./data.txt
 
 Qui doit retourer ceci :
@@ -17,13 +17,6 @@ chunk received l=65536
 chunk received l=63680
 
 
-== Framework express :
+== Lancer les tests 
 
-Pour lancer le serveur :
-cd express/
-npm install -d
-node app.js
-
-Fichier modifié :
-express/routes/index.js
-
+./run-express-test
