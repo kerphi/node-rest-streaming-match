@@ -20,3 +20,4 @@ chunk received l=63680
 == Lancer les tests 
 
 ./run-express-test
+./run-restify-test
