@@ -8,7 +8,7 @@ server.use(restify.acceptParser(server.acceptable));
 //server.use(restify.queryParser());
 //server.use(restify.bodyParser());
 
-server.get('/', function (req, res, next) {
+server.get('/', function (req, res) {
   var nb_chunk = 0;
   
   req.setEncoding('utf-8');
@@ -29,8 +29,6 @@ server.get('/', function (req, res, next) {
   req.on('end', function() {
     res.end();
   });
-  
-  return next();
 });
 
 server.listen(8080, function () {
